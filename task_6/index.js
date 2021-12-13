@@ -1,38 +1,17 @@
-function Node(data) {
-    this.data = data;
-    this.parent = null;
-    this.children = [];
+
+function transformToDecimal(numberArray) {
+    return numberArray.map((item, index) => item * Math.pow(2, index)).reduce((a, b) => a + b).toString().split('').map(item => parseInt(item)).reverse()
 }
-function Tree(data) {
-    let node = new Node(data);
-    this._root = node;
-}
-let tree = new Tree('1');
 
-tree._root.children.push(new Node('2'));
-tree._root.children[0].parent = tree;
-
-tree._root.children.push(new Node('3'));
-tree._root.children[1].parent = tree;
-
-tree._root.children.push(new Node('4'));
-tree._root.children[2].parent = tree;
-
-tree._root.children[0].children.push(new Node('5'));
-tree._root.children[0].children[0].parent = tree._root.children[0];
-
-tree._root.children[0].children.push(new Node('6'));
-tree._root.children[0].children[1].parent = tree._root.children[0];
-
-tree._root.children[2].children.push(new Node('7'));
-tree._root.children[2].children[0].parent = tree._root.children[2];
-
-function search(node) {
-    console.log(node.data);
-    if (node.children.length) {
-        for (let i = 0; i < node.children.length; i++) {
-            search(node.children[i]);
-        }
+function transformToBinary(numberArray) {
+    let binaryNumber = '';
+    let number = numberArray.reverse().join('')
+    while (number > 0) {
+        binaryNumber += number % 2;
+        number = parseInt(number / 2);
     }
+
+    return binaryNumber.split(``).map(item => parseInt(item));
 }
-//search(tree._root)
+  //console.log(transformToDecimal([1, 0, 1, 1]));
+  //console.log(transformToBinary([3,1]))
